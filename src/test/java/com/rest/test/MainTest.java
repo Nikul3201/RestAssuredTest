@@ -83,7 +83,7 @@ public class MainTest {
     public void updateBook() {
 
         // Base URL
-        RestAssured.baseURI = "http://localhost:8082/books/7";
+        RestAssured.baseURI = "http://localhost:8082/books/21";
 
         // Authentication
         String username = "admin";
@@ -118,7 +118,7 @@ public class MainTest {
     public void deleteBook() {
 
         // Base URL
-        RestAssured.baseURI = "http://localhost:8082/books/13";
+        RestAssured.baseURI = "http://localhost:8082/books/16";
 
         // Authentication
         String username = "admin";
@@ -151,7 +151,7 @@ public class MainTest {
                 .get("/9999"); // Assuming 9999 does not exist
 
         // Assert status code
-        assertEquals("Expected 404 Not Found for invalid book ID", String.valueOf(404));
+        assertEquals("Expected 404 Not Found for invalid book ID", 404, response.getStatusCode());
 
         System.out.println("=============================================================");
         // Optional: message validation
