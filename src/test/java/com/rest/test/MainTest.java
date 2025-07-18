@@ -34,6 +34,9 @@ public class MainTest {
         // Send GET request and get the response
         Response response = requestSpecification.get();
 
+        System.out.println("=============================================================");
+        String message = response.getBody().asString();
+        System.out.println(message);
         response.then().statusCode(200);
         System.out.println("==> Fetched book successfully by ID.");
 
@@ -67,6 +70,9 @@ public class MainTest {
                 .body(body);
 
         Response response = requestSpecification.post();
+        System.out.println("=============================================================");
+        String message = response.getBody().asString();
+        System.out.println(message);
 
         response.then().statusCode(201);
         System.out.println("==> Book created successfully with valid data.");
@@ -101,6 +107,9 @@ public class MainTest {
         Response response = requestSpecification.put();
 
         response.then().statusCode(200);
+        System.out.println("=============================================================");
+        String message = response.getBody().asString();
+        System.out.println(message);
 
         System.out.println("==> Book updated successfully.");
     }
@@ -109,20 +118,22 @@ public class MainTest {
     public void deleteBook() {
 
         // Base URL
-        RestAssured.baseURI = "http://localhost:8082/books/9";
+        RestAssured.baseURI = "http://localhost:8082/books/1";
 
         // Authentication
         String username = "admin";
         String password = "password";
 
-        // DELETE request to delete the book with ID 1
+        // DELETE request to delete the book with ID 4
         RequestSpecification requestSpecification = given()
                 .auth().preemptive().basic(username, password);
 
         Response response = requestSpecification.delete();
 
 //        response.then().statusCode(200);
-
+        System.out.println("=============================================================");
+        String message = response.getBody().asString();
+        System.out.println(message);
         System.out.println("==> Book deleted successfully.");
     }
 
@@ -142,6 +153,7 @@ public class MainTest {
         // Assert status code
         assertEquals("Expected 404 Not Found for invalid book ID", 404);
 
+        System.out.println("=============================================================");
         // Optional: message validation
         String message = response.getBody().asString();
         System.out.println("==> [Invalid Book ID] Response Message: " + message);
@@ -157,6 +169,9 @@ public class MainTest {
                 .get("/1");
 
         assertEquals("Expected 401 Unauthorized when no credentials are provided", 401, response.getStatusCode());
+        System.out.println("=============================================================");
+        String message = response.getBody().asString();
+        System.out.println(message);
         System.out.println("==> [Unauthorized Access] Access denied as expected due to missing credentials.");
     }
 
@@ -180,6 +195,9 @@ public class MainTest {
 
 //        System.out.println(response.statusCode());
         response.then().statusCode(400); // Validation failure
+        System.out.println("=============================================================");
+        String message = response.getBody().asString();
+        System.out.println(message);
 
         System.out.println("==> Validation failed as expected due to missing 'name'.");
     }
@@ -206,6 +224,9 @@ public class MainTest {
 //        System.out.println(response.statusCode());
         response.then().statusCode(500);
 
+        System.out.println("=============================================================");
+        String message = response.getBody().asString();
+        System.out.println(message);
         System.out.println("==> Update rejected as expected for non-existent ID.");
     }
 
@@ -220,6 +241,9 @@ public class MainTest {
 //        System.out.println(response.statusCode());
         response.then().statusCode(500);
 
+        System.out.println("=============================================================");
+        String message = response.getBody().asString();
+        System.out.println(message);
         System.out.println("==> Delete attempt failed correctly for non-existent book.");
     }
 
@@ -242,6 +266,10 @@ public class MainTest {
                 .post();
 
         response.then().statusCode(400); // assuming validation
+
+        System.out.println("=============================================================");
+        String message = response.getBody().asString();
+        System.out.println(message);
 
         System.out.println("==> API rejected negative price as expected.");
     }
@@ -267,6 +295,9 @@ public class MainTest {
 
         response.then().statusCode(400);
 
+        System.out.println("=============================================================");
+        String message = response.getBody().asString();
+        System.out.println(message);
         System.out.println("==> API call ignored successfully with additional field 'publisher'.");
     }
 
@@ -291,6 +322,10 @@ public class MainTest {
 
         response.then().statusCode(400);
 
+        System.out.println("=============================================================");
+        String message = response.getBody().asString();
+        System.out.println(message);
+
         System.out.println("==> API rejected string-type price as expected.");
     }
 
@@ -305,6 +340,10 @@ public class MainTest {
 
         long time = response.time();
         assertTrue(time < 1000, "Response time exceeded limit!");
+
+        System.out.println("=============================================================");
+        String message = response.getBody().asString();
+        System.out.println(message);
 
         System.out.println("==> Response time: " + time + " ms — within acceptable limit.");
     }
