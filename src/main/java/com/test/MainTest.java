@@ -108,13 +108,13 @@ public class MainTest {
     public void deleteBook() {
 
         // Base URL
-        RestAssured.baseURI = "http://localhost:8082/books/7";
+        RestAssured.baseURI = "http://localhost:8082/books/1";
 
         // Authentication
         String username = "admin";
         String password = "password";
 
-        // DELETE request to delete the book with ID 4
+        // DELETE request to delete the book with ID 1
         RequestSpecification requestSpecification = given()
                 .auth().preemptive().basic(username, password);
 
