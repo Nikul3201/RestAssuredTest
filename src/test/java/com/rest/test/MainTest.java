@@ -118,7 +118,7 @@ public class MainTest {
     public void deleteBook() {
 
         // Base URL
-        RestAssured.baseURI = "http://localhost:8082/books/1";
+        RestAssured.baseURI = "http://localhost:8082/books/12";
 
         // Authentication
         String username = "admin";
