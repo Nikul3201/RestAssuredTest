@@ -83,7 +83,7 @@ public class MainTest {
     public void updateBook() {
 
         // Base URL
-        RestAssured.baseURI = "http://localhost:8082/books/7";
+        RestAssured.baseURI = "http://localhost:8082/books/22";
 
         // Authentication
         String username = "admin";
